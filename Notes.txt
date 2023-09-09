@@ -1,0 +1,214 @@
+C++ STL(Standard Template Library):
+1. Pair
+2A.Vector B.List
+3A.Stack B.Queue C.Priority_queue
+4A.Set B.Multi_Set C.Unordered_set
+5A.Map 
+
+Time Complexity: O(logN): push() and pop(), O(1); top() 
+1. PAIRS
+pair<int, int> p = {1, 2}
+cout << p.first << " " << p.second; // Output: 1 2
+
+
+
+2A. VECTORS
+vector<int> v;
+v.push_back(2); // {2}
+cout << v[0]; // Output: 2
+
+vector<int> v2(3); // {0, 0, 0}
+vector<int> v3(4, 100); // {100, 100, 100, 100}
+vector<int>::iterator it = v2.begin(); // It is a variable which points at v2[0] 
+OR
+auto it = v2.begin(); // Same as the previous one
+auto it2 = v2.end(); // Points at the v2[4+1] element, v2.end()-1 will point at the last element v2[4]
+cout << *(it) << " " << *(it2); // Output: 100 100
+
+// {10, 20, 12, 23}
+v.erase(v.begin()+1); // {10, 12, 23}
+// {10, 20, 12, 23, 45, 67}
+v.erase(v.begin()+1, v.begin()+4); // will erase from index 1 to 3 [start, end) so {10, 45, 67}
+
+// {10, 20, 12, 23}
+v.insert(v.begin(), 300) // {300, 10, 20, 12, 23}
+v.insert(v.begin()+1, 3, 50) // {300, 50, 50, 50, 10, 20, 12, 23}
+
+v.size(); // Returns the size of the vector v
+v.pop_back(); // Removes the last element of the vector
+v1.swap(v2); // Swaps two vectors
+v.clear(); // Empties the vector
+v.isEmpty(); // Returns true if vector is empty else returns false
+
+
+2B. LIST (Similar to vector just faster in frontal operations)
+list<int> ls;
+
+ls.push_back(2); // {2}
+ls.push_front(5); // {5, 2}
+
+// Rest function same as vector
+// begin, end rbegin, rend, clear, insert, size, swap
+
+
+
+
+3A. STACK (The elements which are inserted last are treated as the first elements)
+stack<int> st;
+st.push(1); // {1}
+st.push(2); // {2, 1}
+st.push(3); // {3, 2, 1}
+st.push(3); // {3, 3, 2, 1}
+st.push(5); // {5, 3, 3, 2, 1}
+
+cout << st.top(); // Prints 5
+
+st.pop(); // {3, 3, 2, 1} first element will get removed
+st.top(); // Now 3
+
+// Size(), empty(), swap() are same as vector
+
+
+3B. QUEUE (Elements which are inserted first are treated as first elements)
+queue<int> q;
+q.push(1); // {1}
+q.push(2); // {1, 2}
+q.push(3); // {1, 2, 3}
+
+q.back() += 7; // {1, 2, 10}
+cout << q.back() << q.front(); // Output: 10 1
+q.pop(); // {2, 10}
+
+// Size(), empty(), swap() are same as vector
+
+
+3C. PRIORITY_QUEUE (Also known as Max Heap. The largest element is the first element and further elements pushed will be placed according to value)
+Main functions: push, top, pop
+priority_queue<int> pq; 
+pq.push(4); // {4}
+pq.push(7); // {7, 4}
+pq.push(1); // {7, 4, 1}
+pq.push(42); // {42, 7, 4, 1}
+
+cout << pq.top(); // Prints 42
+pq.pop() // {7, 4, 1}
+
+// Size(), empty(), swap() are same as vector
+ 
+Min Heap(The smallest element is the first element):
+priority_queue<int, vector<int>, greater<int>> pq;
+pq.push(10); // {10}
+pq.push(7); // {7, 10}
+pq.push(1); // {1, 7, 10}
+pq.push(100); // {1, 7, 10, 100}
+
+
+
+4A. SET (Stores in ASCENDING order and only stores UNIQUE elements)
+Main functions: find, count, insert;
+set<int> st;
+st.insert(1); // {1}
+st.insert(4); // {1, 4}
+st.insert(4); // {1, 4}
+st.insert(3); // {1, 3, 4}
+st.insert(2); // {1, 2, 3, 4}
+
+auto it = st.find(3); // it is an iterator which points at the element 3 in st
+cout << *it; // Prints 1
+st.erase(4); // Erases 4 // Complexity logN
+st.count(x); // Gives 1 if exists in st else returns 0
+
+
+4B. MULTI_SET (Stores all elements in ascending order)
+multiset<int> ms;
+ms.insert(1); // {1}
+ms.insert(1); // {1, 1}
+ms.insert(1); // {1, 1, 1}
+
+ms.erase(1); // erases all 1's
+
+int cnt = ms.count(1); // returns total no. of 1's in ms
+
+ms.erase(ms.find(1)); // erases only a single element whose address is passed
+ms.erase(ms.find(1), ms.find(1)+2); // erases all elements from [start, end)
+
+// Rest functions same as set
+
+
+4C. UNORDERED_SET (Stores unique elements in random order)
+unordered_set<int> st;
+// Has better complexity than set
+// All functions same as set except upperbound and lowerbound
+
+
+
+5A. MAP (Stores in <key, value> where each keys are unique and stored in sorted order, and value may or maynot be unique)
+map<int, int> mpp; // Key and value can be any datatype
+
+mpp[1] = 2; // {{1, 2}}
+mpp.emplace(3, 1); // {{1, 2}, {3, 1}}
+mpp.emplace(2, 4); // {{1, 2}, {2, 4}, {3, 1}}
+
+for (auto it=mpp.begin(); it!=mpp.end(); it++) {
+	cout << it->first << "\t" << it->second << endl;
+} // Prints all the keys and values of mpp
+
+// {{1, 2}, {2, 4}, {3, 1}}
+cout << mpp[1]; // Prints 2
+
+auto it = mpp.find(3); // Points at {3, 1} element whose key is 3
+cout << *(it)->second; // Prints 1
+
+auto it = mpp.find(5); // Points at mpp.end();
+
+
+CF:
+Div 3 (800-1800):
+implementation
+constructive algorithms
+math
+brute force
+greedy
+strings
+two pointers
+binary search
+sortings
+hashing
+
+Div 2 (800-1800):
+implementation
+constructive algorithms
+two pointers
+math
+greedy
+sortings
+strings
+binary search
+bitmasks
+
+Div 1 (>=1800):
+constructive algorithms
+bitmasks
+brute force
+combinatorics
+dp
+math
+trees
+dp
+bitmasks
+dfs and similar
+graphs
+
+TimeTaken.cpp:
+int main() {
+	clock_t start, end;
+
+    start = clock();
+    end = clock();
+
+    int timeTaken = int(double(end - start) / double(CLOCKS_PER_SEC) * 1000);
+    cout << "Time taken: " << timeTaken << " ms";
+
+    int x; cin >> x;
+	return 0;
+}
