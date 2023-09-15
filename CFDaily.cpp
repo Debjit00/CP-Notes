@@ -26,3 +26,4 @@ int main() {
     while(t--) cout << solve() << endl;
     return 0;
 }
+// https://codeforces.com/problemset/problem/1834/A
