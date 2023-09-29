@@ -1,3 +1,15 @@
+int bs(vector<int> &a, int s, int e, int x) {
+    while(s<=e) {
+        int m=(s+e)/2;
+
+        if (x==a[m]) return m;
+        else if (x<a[m]) e=m-1;
+        else s=m+1;
+    }
+
+    return -1;
+}
+
 string stringDiffs(string num1, string num2) {
     int len1 = num1.length(), len2 = num2.length();
     if (len1 < len2 || (len1 == len2 && num1 < num2))
