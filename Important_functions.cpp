@@ -10,6 +10,16 @@ int bs(vector<int> &a, int s, int e, int x) {
     return -1;
 }
 
+int pivot(vector<int>& arr) {
+	int s=0, p=arr.size()-1;
+	while(s<=p) {
+		int m=(s-p)/2+p;
+		if (arr[m]>=arr[0]) s=m+1;
+		else p=m-1;
+	}
+	return p;
+}
+
 string stringDiffs(string num1, string num2) {
     int len1 = num1.length(), len2 = num2.length();
     if (len1 < len2 || (len1 == len2 && num1 < num2))
