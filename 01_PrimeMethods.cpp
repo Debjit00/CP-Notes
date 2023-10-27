@@ -10,7 +10,7 @@ bool isPrime(ll n) {
     return true;
 }
 
-int len=2e5;
+ll len=1e5;
 vector<bool> prime(len+1, 1);
 void primeSieve() {
     prime[0]=0, prime[1]=0;
