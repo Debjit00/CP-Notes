@@ -12,7 +12,7 @@ bool isPrime(ll n) {
 
 ll len=1e5;
 vector<bool> prime(len+1, 1);
-void primeSieve() {
+void build() {
     prime[0]=0, prime[1]=0;
     for (int p=2; p<sqrt(len); p++) {
         if (!prime[p]) continue;
