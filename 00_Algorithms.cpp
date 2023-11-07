@@ -25,9 +25,9 @@ for(int i=0; i<n; i++) dp[i][0] = 1;
 dp[0][arr[0]] = 1;
 for (int i=1; i<n; i++) {
     for (int target=1; target <= k; target++) {
-        dp[i][target] = dp[i-1][target];
-        if (target-arr[i] >= 0) 
-            dp[i][target] = dp[i][target] | dp[i-1][target-arr[i]];
+        if (target >= arr[i]) 
+            dp[i][target] = dp[i-1][target] | dp[i-1][target-arr[i]];
+        else dp[i][target] = dp[i-1][target];
     }
 }
 
