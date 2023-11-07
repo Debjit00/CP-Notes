@@ -1,3 +1,36 @@
+// DFS
+void dfs(int node, vector<vector<int>> &adjLs, vector<int> &vis) {
+	vis[node] = 1;
+	for(int it: adjLs[node]) {
+		if (!vis[it]) {
+			dfs(it, adjLs, vis);
+		}
+	}
+}
+
+// Adj Matrix to List
+vector<vector<int>> adjLs(V);
+for (int i=0; i<V; i++) {
+	for (int j=0; j<V; j++) {
+		if (adj[i][j] == 1 && i != j) {
+			adjLs[i].push_back(j);
+			adjLs[j].push_back(i);
+		}
+	}
+}
+
+// DP Subset Sum
+vector<vector<bool>> dp(n, vector<bool> (k+1));
+for(int i=0; i<n; i++) dp[i][0] = 1;
+dp[0][arr[0]] = 1;
+for (int i=1; i<n; i++) {
+    for (int target=1; target <= k; target++) {
+        dp[i][target] = dp[i-1][target];
+        if (target-arr[i] >= 0) 
+            dp[i][target] = dp[i][target] | dp[i-1][target-arr[i]];
+    }
+}
+
 // SEGMENT TREE
 void build(int i, int low, int high, vector<int> &a, vector<int> &seg) {
     if (high == low) {
