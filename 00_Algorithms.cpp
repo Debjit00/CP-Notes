@@ -22,7 +22,7 @@ for (int i=0; i<V; i++) {
 // DP Subset Sum
 vector<vector<bool>> dp(n, vector<bool> (k+1));
 for(int i=0; i<n; i++) dp[i][0] = 1;
-dp[0][arr[0]] = 1;
+if (k >= arr[0]) dp[0][arr[0]] = 1;
 for (int i=1; i<n; i++) {
     for (int target=1; target <= k; target++) {
         if (target >= arr[i]) 
