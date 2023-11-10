@@ -1,3 +1,14 @@
+// POWER
+ll power(ll a, ll b, ll m) {
+    ll res=1;
+    while(b>0) {
+        if (b%2) res = (res*a)%m;
+        a = (a*a)%m;
+        b/=2;
+    }
+    return res;
+}
+
 // DP Subset Sum
 bool isPossible(int n, int k, vector<int> &arr) {
 	vector<vector<bool>> dp(n, vector<bool> (k+1));
