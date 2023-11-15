@@ -18,14 +18,13 @@ void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {
 void bfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>> &vis) {
     int n=grid.size();
     int m=grid[0].size();
-    queue<pair<pair<int, int>, int>> q;
+    queue<pair<int, int>> q;
     
     int drow[] = {-1, 1, 0, 0};
     int dcol[] = {0, 0, -1, 1};
     while(!q.empty()) {
-        int r=q.front().first.first;
-        int c=q.front().first.second;
-        int d=q.front().second+1;
+        int r=q.front().first;
+        int c=q.front().second;
         q.pop();
         
         for(int i=0; i<4; i++) {
