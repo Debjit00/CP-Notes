@@ -28,6 +28,7 @@ void bfs(int row, int col, vector<vector<int>> &grid, vector<vector<int>> &vis) 
     while(!q.empty()) {
         int r=q.front().first;
         int c=q.front().second;
+        vis[r][c] = 1;
         q.pop();
         
         for(int i=0; i<4; i++) {
