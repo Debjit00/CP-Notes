@@ -38,27 +38,6 @@ int totalSubsequences(int n, int k, vector<int> &arr) {
     return dp[n-1][k];
 }
 
-// DFS
-void dfs(int node, vector<vector<int>> &adjLs, vector<int> &vis) {
-	vis[node] = 1;
-	for(int it: adjLs[node]) {
-		if (!vis[it]) {
-			dfs(it, adjLs, vis);
-		}
-	}
-}
-
-// Adj Matrix to List
-vector<vector<int>> adjLs(V);
-for (int i=0; i<V; i++) {
-	for (int j=0; j<V; j++) {
-		if (adj[i][j] == 1 && i != j) {
-			adjLs[i].push_back(j);
-			adjLs[j].push_back(i);
-		}
-	}
-}
-
 // SEGMENT TREE
 void build(int i, int low, int high, vector<int> &a, vector<int> &seg) {
     if (high == low) {
