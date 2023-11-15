@@ -1,4 +1,4 @@
-// GRID DFS
+// ADJACENCY GRID
 void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {
     int n=grid.size();
     int m=grid[0].size();
@@ -16,7 +16,6 @@ void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {
     }
 }
 
-// GRID BFS
 void bfs(int row, int col, vector<vector<int>> &grid, vector<vector<int>> &vis) {
     int n=grid.size();
     int m=grid[0].size();
@@ -43,3 +42,27 @@ void bfs(int row, int col, vector<vector<int>> &grid, vector<vector<int>> &vis) 
     }
     
 }
+//*************************************************************************************************************************************************************************
+
+// ADJACENCY LIST
+void bfs(int node, vector<int> adj[], vector<int> &vis) {
+    queue<int> q;
+    q.push(node);
+    vis[node] = 1;
+    
+    while(!q.empty()) {
+        node = q.front();
+        q.pop();
+        
+        for(int it: adj[node]) {
+            if(!vis[it]) {
+                vis[it] = 1;
+                q.push(it);
+            }
+        }
+    }
+    
+}
+
+void dfs(
+
