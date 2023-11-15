@@ -1,13 +1,13 @@
 // GRID DFS
-void dfs(int r, int c, vector<vector<char>> &mat, vector<vector<int>>  &vis) {    
+void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {    
     int drow[] = {1, -1, 0, 0};
     int dcol[] = {0, 0, -1, 1};
     for(int i=0; i<4; i++) {
         int nrow=r+drow[i];
         int ncol=c+dcol[i];
         
-        if(nrow<0 || ncol<0 || nrow==mat.size() || ncol==mat[0].size()) continue;
-        else if(mat[nrow][ncol] == 'O' && !vis[nrow][ncol]) {
+        if(nrow<0 || ncol<0 || nrow==grid.size() || ncol==grid[0].size()) continue;
+        else if(grid[nrow][ncol] == 1 && !vis[nrow][ncol]) {
             
         }
     }
