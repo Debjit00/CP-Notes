@@ -1,5 +1,7 @@
 // GRID DFS
 void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {
+    int n=grid.size();
+    int m=grid[0].size();
     vis[r][c] = 1;
     int drow[] = {1, -1, 0, 0};
     int dcol[] = {0, 0, -1, 1};
@@ -7,7 +9,7 @@ void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {
         int nrow=r+drow[i];
         int ncol=c+dcol[i];
         
-        if(nrow<0 || ncol<0 || nrow==grid.size() || ncol==grid[0].size()) continue;
+        if(nrow<0 || ncol<0 || nrow==n || ncol==m) continue;
         else if(grid[nrow][ncol] == 1 && !vis[nrow][ncol]) {
             
         }
