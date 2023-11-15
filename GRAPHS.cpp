@@ -17,10 +17,11 @@ void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {
 }
 
 // GRID BFS
-void bfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>> &vis) {
+void bfs(int row, int col, vector<vector<int>> &grid, vector<vector<int>> &vis) {
     int n=grid.size();
     int m=grid[0].size();
     queue<pair<int, int>> q;
+    q.push(row, col);
     
     int drow[] = {-1, 1, 0, 0};
     int dcol[] = {0, 0, -1, 1};
