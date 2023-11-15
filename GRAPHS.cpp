@@ -1,5 +1,6 @@
 // GRID DFS
-void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {    
+void dfs(int r, int c, vector<vector<int>> &grid, vector<vector<int>>  &vis) {
+    vis[r][c] = 1;
     int drow[] = {1, -1, 0, 0};
     int dcol[] = {0, 0, -1, 1};
     for(int i=0; i<4; i++) {
