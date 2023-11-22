@@ -5,7 +5,7 @@ vector<vector<ll>> multiply(vector<vector<ll>> &A, vector<vector<ll>> &B){
         for(int i=0; i<A.size(); i++) {
             for(int j=0; j<B[0].size(); j++) {
                 for(int k=0; k<A[0].size(); k++) {
-                    res[i][j] += (A[i][k]*B[k][j]) % mod;
+                    res[i][j] = (res[i][j] + A[i][k]*B[k][j]) % mod;
                 }
             }
         }
