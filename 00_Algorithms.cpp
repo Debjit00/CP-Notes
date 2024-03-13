@@ -9,6 +9,10 @@ ll power(ll a, ll b, ll m) {
     return res;
 }
 
+ll modInverse(ll num, ll m) {
+    return power(num, m-2, m);
+}
+
 // SEGMENT TREE
 void build(int i, int low, int high, vector<int> &a, vector<int> &seg) {
     if (high == low) {
