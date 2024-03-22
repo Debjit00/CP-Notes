@@ -13,31 +13,60 @@ ll modInverse(ll num, ll m) {
     return power(num, m-2, m);
 }
 
+//***********************************************X***********************************************//
 // SEGMENT TREE
-void build(int i, int low, int high, vector<int> &a, vector<int> &seg) {
-    if (high == low) {
-        seg[i] = a[low];
+struct Node{
+	ll mini;
+	ll cnt;
+	Node(ll m=LLONG_MAX, ll c=0) {
+		mini = m;
+		cnt = c;
+	}
+};
+Node merge(Node a, Node b) {
+	if(a.mini == b.mini)
+		return Node(a.mini, a.cnt + b.cnt);
+	else if (a.mini < b.mini)
+		return a;
+	else 
+		return b;
+}
+void build(ll index, ll start, ll end, vll &a, vector<Node> &seg) {
+    if (end == start) {
+        seg[index] = Node(a[start], 1ll);
         return;
     }
-    int mid = (low + high)/2;
-    build(2*i+1, low, mid, a, seg);
-    build(2*i+2, mid+1, high, a, seg);
-    seg[i] = max(seg[2*i+1], seg[2*i+2]); //-------------------------------IMP
+    ll mid = (start + end)/2;
+    build(2*index, start, mid, a, seg);
+    build(2*index+1, mid+1, end, a, seg);
+    seg[index] = merge(seg[2*index], seg[2*index+1]);
 }
-int query(int i, int low, int high , int l, int r, vector<int> &a, vector<int> &seg) {
-    if (low>=l && high<=r) return seg[i];
-    if (high<l || low>r) return INT_MIN; //-------------------------------IMP
-    int mid = (low + high)/2;
-    int left = query(2*i+1, low, mid, l, r, a, seg);
-    int right = query(2*i+2, mid+1, high, l, r, a, seg);
-    return max(left, right); //-------------------------------IMP
+void update(ll index, ll start, ll end, ll pos, ll val, vll &a, vector<Node> &seg) {
+	if(pos<start || pos>end) return;
+	if(start == end) {
+		seg[index] = Node(val, 1);
+		a[pos] = val;
+		return;
+	}
+	ll mid = (start + end) / 2;
+	update(2*index, start, mid, pos, val, a, seg);
+	update(2*index+1, mid+1, end, pos, val, a, seg);
+    seg[index] = merge(seg[2*index], seg[2*index+1]);
 }
-// INITIALIZE
-int n = 1e5;
-vector<int> a(n), seg(4*n);
-build(0, 0, n-1, a, seg);
-// QUERY
-query(0, 0, n, l, r, a, seg);
+Node query(ll index, ll start, ll end , ll l, ll r, vll &a, vector<Node> &seg) {
+    if (start>=l && end<=r) return seg[index];
+    if (end<l || start>r) return Node(); //-------------------------IMP
+    ll mid = (start + end)/2;
+    Node left = query(2*index, start, mid, l, r, a, seg);
+    Node right = query(2*index+1, mid+1, end, l, r, a, seg);
+    return merge(left, right);
+}
+// Initialize, Build, Update, Query
+ll n = 1e5; vll a(n);
+vector<Node> seg(4*n);
+build(1, 0, n-1, a, seg);
+update(1, 0, n-1, l, r, a, seg);
+query(0, 0, n, l, r, a, seg); // Returns Node
 //***********************************************X***********************************************//
 
 
