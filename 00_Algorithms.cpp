@@ -53,7 +53,7 @@ void update(ll index, ll start, ll end, ll pos, ll val, vll &a, vector<Node> &se
 	update(2*index+1, mid+1, end, pos, val, a, seg);
     seg[index] = merge(seg[2*index], seg[2*index+1]);
 }
-Node query(ll index, ll start, ll end , ll l, ll r, vll &a, vector<Node> &seg) {
+Node query(ll index, ll start, ll end, ll l, ll r, vll &a, vector<Node> &seg) {
     if (start>=l && end<=r) return seg[index];
     if (end<l || start>r) return Node(); //-------------------------IMP
     ll mid = (start + end)/2;
@@ -66,7 +66,7 @@ ll n = 1e5; vll a(n);
 vector<Node> seg(4*n);
 build(1, 0, n-1, a, seg);
 update(1, 0, n-1, l, r, a, seg);
-query(0, 0, n, l, r, a, seg); // Returns Node
+query(1, 0, n-1, l, r, a, seg); // Returns Node
 //***********************************************X***********************************************//
 
 
