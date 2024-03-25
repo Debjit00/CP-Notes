@@ -84,6 +84,48 @@ void bfs(int row, int col, vector<vector<int>> &grid, vector<vector<int>> &vis) 
             }
         }
     }
-    
+}
+
+// SCC (Strongly Connected Components | Kosaraju's Algorithm):
+vvll SCC(vvll &adj) {
+	int n = adj.size();
+	vvll radj(n), res;
+	vll vis(n), order;
+
+	function<void(int)> dfs = [&](int node) {
+		if(vis[node]) return;
+		vis[node] = 1;
+
+		for(auto i: adj[node]) {
+			radj[i].push_back(node);
+			dfs(i);
+		}
+		order.push_back(node);
+	};
+
+	for(int i=0; i<n; i++)
+		dfs(i);
+
+	reverse(all(order));
+
+	vll strongComp;
+	vis = vll(n, 0);
+	function<void(ll)>dfs2 = [&](ll node) {
+		if(vis[node]) return;
+		vis[node] = 1;
+		for(auto i: radj[node]) {
+			dfs2(i);
+		}
+		strongComp.push_back(node);
+	};
+
+	for(int i=0; i<n; i++) {
+		strongComp = vll(0);
+		dfs2(i);
+		if(strongComp.size()) res.push_back(strongComp);
+	}
+
+	sort(all(res), judge);
+	return res;
 }
 //*************************************************************************************************************************************************************************
