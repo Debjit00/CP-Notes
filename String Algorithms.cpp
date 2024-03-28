@@ -19,29 +19,29 @@ vi buildLPS(string str) {
 
 vi buildZ(string str) {
     int n = str.size();
-    vi Z(n);
-    int L, R, k;
-    L = R = 0;
+    vi z(n);
+    int left, right, k;
+    left = right = 0;
     for (int i = 1; i < n; ++i) {
-        if (i > R) {
-            L = R = i;
-            while (R<n && str[R-L] == str[R])
-                R++;
-            Z[i] = R-L;
-            R--;
+        if (i > right) {
+            left = right = i;
+            while (right<n && str[right-left] == str[right])
+                right++;
+            z[i] = right-left;
+            right--;
         }
         else {
-            k = i-L;
-            if (Z[k] < R-i+1)
-                Z[i] = Z[k];
+            k = i-left;
+            if (z[k] < right-i+1)
+                z[i] = z[k];
             else {
-                L = i;
-                while (R<n && str[R-L] == str[R])
-                    R++;
-                Z[i] = R-L;
-                R--;
+                left = i;
+                while (right<n && str[right-left] == str[right])
+                    right++;
+                z[i] = right-left;
+                right--;
             }
         }
     }
-    return Z;
+    return z;
 }
