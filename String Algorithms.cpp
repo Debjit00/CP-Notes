@@ -1,4 +1,4 @@
-vi buildLPS(string str) {
+vi buildLps(string str) {
     int n = str.size();
     vi lps(n);
     int len = 0, i = 1;
@@ -44,4 +44,32 @@ vi buildZ(string str) {
         }
     }
     return z;
+}
+
+vi manacherPal(const string& text) {
+    string testing = "#";
+    for (char c : text) {
+        testing += c;
+        testing += "#";
+    }
+    int n = testing.size();
+    int center = 0, right = 0;
+    vector<int> pLen(n, 0);
+    
+    for (int i=1; i<n-1; i++) {
+        int mirror = 2*center - i;
+        if (i < right){
+            pLen[i] = min(right - i, pLen[mirror]);
+        }
+        while (testing[i - pLen[i] - 1] == testing[i + pLen[i] + 1]){
+            ++pLen[i];
+        }
+        if (i + pLen[i] > right) {
+            center = i;
+            right = i + pLen[i];
+        }
+    }
+    for(int i=0; i<n; i+=2) 
+        if(pLen[i]%2) pLen[i]--;
+    return pLen;
 }
