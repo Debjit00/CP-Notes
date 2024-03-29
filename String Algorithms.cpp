@@ -55,7 +55,6 @@ vi manacherPal(const string& text) {
     int n = testing.size();
     int center = 0, right = 0;
     vector<int> pLen(n, 0);
-    
     for (int i=1; i<n-1; i++) {
         int mirror = 2*center - i;
         if (i < right){
@@ -69,7 +68,7 @@ vi manacherPal(const string& text) {
             right = i + pLen[i];
         }
     }
-    for(int i=0; i<n; i+=2) 
-        if(pLen[i]%2) pLen[i]--;
+    n = text.size();
+    pLen[n] = min(n, pLen[n]);
     return pLen;
 }
