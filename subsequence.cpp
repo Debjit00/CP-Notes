@@ -1,6 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int LIS(vi &a) {
+	vi dp;
+	for(auto i: a) {
+		auto it = upper_bound(all(dp), i);
+		if(it==dp.end()) dp.push_back(i);
+		else *it = i;
+	}
+	return dp.size();
+}
+
 void print(vector<int> &v) {
 	if (v.size()==0) {
 		cout << "{}" << endl;
