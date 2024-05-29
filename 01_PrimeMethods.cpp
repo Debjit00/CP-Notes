@@ -14,7 +14,7 @@ int len=1e5;
 vector<bool> prime(len+1, 1);
 void build() {
     prime[0]=0, prime[1]=0;
-    for (int p=2; p<sqrt(len); p++) {
+    for (int primeFactors=2; primeFactors<sqrt(len); primeFactors++) {
         if (!prime[p]) continue;
         for (int i=p*p; i<=len; i+=p) {
             if (prime[i]) prime[i]=false;
@@ -32,11 +32,22 @@ void sieve() {
     for (int j = i; j <= len; j += i)
     if (spf[j]== 1) spf[j] = i;
 }
-vector<int> factors(int x) {
-    vector<int> res;
+void f(vector<int> &v, int n, int i, vector<int> &res) {
+    if(i == v.size()) {
+        res.push_back(n);
+        return;
+    }
+    int val = n * v[i], j = i+1;
+    while(i<v.size() && v[j-1] == v[j]) j++, val *= v[i];
+    f(v, n, i+1, res);
+    f(v, val, j, res);
+}
+vector<int> factor(int x) {
+    vector<int> primeFactors, res;
     while (x != 1) {
-        res.push_back(spf[x]);
+        primeFactors.push_back(spf[x]);
         x = x / spf[x];
     }
+    f(primeFactors, 1, 0, res);
     return res;
 }
