@@ -16,7 +16,7 @@ void build() {
     prime[0]=0, prime[1]=0;
     for (int p=2; p<sqrt(len); p++) {
         if (!prime[p]) continue;
-        for (int i=p*p; i<len; i+=p) {
+        for (int i=p*p; i<=len; i+=p) {
             if (prime[i]) prime[i]=false;
         }
     }
