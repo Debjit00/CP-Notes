@@ -38,7 +38,7 @@ void f(vector<int> &v, int n, int i, vector<int> &res) {
         return;
     }
     int val = n * v[i], j = i+1;
-    while(i<v.size() && v[j-1] == v[j]) j++, val *= v[i];
+    while(j<v.size() && v[j-1] == v[j]) j++, val *= v[i];
     f(v, n, i+1, res);
     f(v, val, j, res);
 }
