@@ -32,22 +32,22 @@ void sieve() {
     for (int j = i; j <= len; j += i)
     if (spf[j]== 1) spf[j] = i;
 }
-void f(vector<int> &v, int n, int i, vector<int> &res) {
+void helper(vector<int> &v, int n, int i, vector<int> &res) {
     if(i == v.size()) {
         res.push_back(n);
         return;
     }
     int val = n * v[i], j = i+1;
     while(j<v.size() && v[j-1] == v[j]) j++, val *= v[i];
-    f(v, n, i+1, res);
-    f(v, val, j, res);
+    helper(v, n, i+1, res);
+    helper(v, val, j, res);
 }
-vector<int> factor(int x) {
+vector<int> factors(int x) {
     vector<int> primeFactors, res;
     while (x != 1) {
         primeFactors.push_back(spf[x]);
         x = x / spf[x];
     }
-    f(primeFactors, 1, 0, res);
+    helper(primeFactors, 1, 0, res);
     return res;
 }
