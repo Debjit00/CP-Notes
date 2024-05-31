@@ -14,7 +14,7 @@ int len=1e5;
 vector<bool> prime(len+1, 1);
 void build() {
     prime[0]=0, prime[1]=0;
-    for (int primeFactors=2; primeFactors<sqrt(len); primeFactors++) {
+    for (int p=2; p<sqrt(len); p++) {
         if (!prime[p]) continue;
         for (int i=p*p; i<=len; i+=p) {
             if (prime[i]) prime[i]=false;
