@@ -1,17 +1,12 @@
 // POWER
-ll power(ll a, ll b, ll m) {
-    ll res=1;
-    while(b>0) {
-        if (b%2) res = (res*a)%m;
-        a = (a*a)%m;
-        b/=2;
-    }
-    return res;
+int power(int a, int b, int m) {
+    int res=1; while(b>0) {
+        if (b%2) res = (res*a) % m;
+        a = (a*a) % m; b/=2;
+    } return res;
 }
 
-ll modInverse(ll num, ll m) {
-    return power(num, m-2, m);
-}
+int modInverse(int num, int m) {return power(num, m-2, m);}
 
 //***********************************************X***********************************************//
 // SEGMENT TREE
