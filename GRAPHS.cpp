@@ -1,19 +1,19 @@
 // Disjoint Set Union(DSU):
 class UnionFind {
-    private: vector<int> p, rank;
     public:
+    	vector<int> parent, rank;
         UnionFind(int n) {
-            rank.assign(n,0); p.assign(n,0);
-            iota(p.begin(),p.end(),0);
+            rank.assign(n,0); parent.assign(n,0);
+            iota(parent.begin(),parent.end(),0);
         }
-        int findSet(int i){ return (p[i] == i) ? i : p[i] = findSet(p[i]);}
-        bool isSameSet(int i, int j){ return findSet(i) == findSet(j);}
+        int findSet(int i) {return (parent[i] == i) ? i : parent[i] = findSet(parent[i]);}
+        bool isSameSet(int i, int j) {return findSet(i) == findSet(j);}
         void unionSet(int i, int j) {
             if(!isSameSet(i,j)) {
                 int x = findSet(i), y = findSet(j);
-                if(rank[x] > rank[y]) p[y] = x;
+                if(rank[x] > rank[y]) parent[y] = x;
                 else {
-                	p[x] = y;
+                	parent[x] = y;
                 	if(rank[x] == rank[y]) rank[y]++;
                 }
             }
