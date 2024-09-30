@@ -12,7 +12,10 @@ class UnionFind {
             if(!isSameSet(i,j)) {
                 int x = findSet(i), y = findSet(j);
                 if(rank[x] > rank[y]) p[y] = x;
-                else p[x] = y, if(rank[x] == rank[y]) rank[y]++;
+                else {
+					p[x] = y;
+                	if(rank[x] == rank[y]) rank[y]++;
+                }
             }
         }
 };
