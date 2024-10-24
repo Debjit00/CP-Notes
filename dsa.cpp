@@ -43,4 +43,5 @@ int main() {
     return 0;
 }
 
-// Output: 10 20 30
+// Linked list data: 10 20 30
+
