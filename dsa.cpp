@@ -1,3 +1,4 @@
+// 1. Create a linked list data. add three nodes. create respective links. display all the data from all three nodes from the first node. using c++
 #include <iostream>
 using namespace std;
 
@@ -41,3 +42,5 @@ int main() {
 
     return 0;
 }
+
+// Output: 10 20 30
