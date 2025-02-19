@@ -1,5 +1,7 @@
 // POWER
 int power(int a, int b, int m) {
+    if(b < 0)
+	return power(power(a, m-2, m), abs(b), m);
     int res=1; while(b>0) {
         if (b%2) res = (res*a) % m;
         a = (a*a) % m; b/=2;
